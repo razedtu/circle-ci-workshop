@@ -1,31 +1,33 @@
 workflows:
   version: 2.0
-  jobs:
-    test:
-      docker:
-        - image: circleci/openjdk:8-jdk
-      steps:
-        - checkout :
-        - run:
-            name: The First Step
-            command: |
-              gradle test
-              gradle jar
+  feature_master:
+    jobs:
 
-        - store_test_results:
-            path: build/test-results
+      test:
+        docker:
+          - image: circleci/openjdk:8-jdk
+        steps:
+          - checkout :
+          - run:
+              name: The First Step
+              command: |
+                gradle test
+                gradle jar
 
-    package:
-      docker:
-        - image: circleci/openjdk:8-jdk
-      steps:
-        - checkout :
-        - run:
-            name: The First Step
-            command: |
-              gradle test
-              gradle jar
-        - store_artifacts:
-            path: build/libs
-            destination: prefix
+          - store_test_results:
+              path: build/test-results
+
+      package:
+        docker:
+          - image: circleci/openjdk:8-jdk
+        steps:
+          - checkout :
+          - run:
+              name: The First Step
+              command: |
+                gradle test
+                gradle jar
+          - store_artifacts:
+              path: build/libs
+              destination: prefix
 
