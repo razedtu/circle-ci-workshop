@@ -11,5 +11,5 @@ jobs:
             gradle test
 
       - store_test_results:
-          path: ththth/test-results
+          path: test-results
 
